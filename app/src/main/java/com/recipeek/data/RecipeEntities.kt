@@ -13,14 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.recipeek.data
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+data class Recipe(
+    val id: Int,
+    val title: String,
+    val desc: String = "",
+    val imageUrl: String? = null,
+    val calories: Int = 0,
+    val cookingTime: Int = 0, // In minutes
+    val service: Int = 1,
+    val ingredients: List<Ingredient> = listOf(),
+    val steps: List<Step> = listOf(),
+)
 
-val shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
+data class Step(
+    val position: Int,
+    val desc: String,
+    val prepTime: Int? = null
+)
+
+data class Ingredient(
+    val id: Int,
+    val name: String,
+    val desc: String,
+    val quantity: Int,
+    val quantityType: String,
 )
