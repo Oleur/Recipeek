@@ -15,6 +15,7 @@
  */
 package com.recipeek.ui.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -23,7 +24,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.recipeek.feature.home.HomeScreen
+import com.recipeek.feature.recipe.RecipeDetailsScreen
 
+@ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @Composable
 fun Navigation() {
@@ -46,7 +49,7 @@ fun Navigation() {
             )
         ) { navBackStackEntry ->
             navBackStackEntry.arguments?.getInt("Id")?.let { recipeId ->
-
+                RecipeDetailsScreen(recipeId = recipeId)
             }
         }
     }

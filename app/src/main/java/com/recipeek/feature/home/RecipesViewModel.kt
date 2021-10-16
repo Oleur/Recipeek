@@ -18,11 +18,26 @@ class RecipesViewModel @Inject constructor(
     val recipes = MutableStateFlow<List<Recipe>>(emptyList())
     val recipe = MutableStateFlow<Recipe?>(null)
 
-    fun getPets() = viewModelScope.launch(Dispatchers.IO) {
+    fun getRecipes() = viewModelScope.launch(Dispatchers.IO) {
         recipes.emit(repository.getRecipes())
     }
 
-    fun getPet(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+    fun findRecipes(query: String) = viewModelScope.launch(Dispatchers.IO) {
+        if (query.isEmpty()) {
+            recipes.emit(repository.getRecipes())
+            return@launch
+        }
+
+        if (query.isNotEmpty() && query.length > 2) {
+            recipes.emit(
+                repository.getRecipes().filter { recipe ->
+                    recipe.title.contains(query, true)
+                }
+            )
+        }
+    }
+
+    fun getRecipe(id: Int) = viewModelScope.launch(Dispatchers.IO) {
         recipe.emit(repository.getRecipe(id))
     }
 }

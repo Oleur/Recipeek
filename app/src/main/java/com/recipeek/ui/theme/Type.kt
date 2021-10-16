@@ -30,13 +30,13 @@ val Typography = Typography(
     h2 = defaultTextStyle.copy(fontSize = 22.sp),
     h3 = defaultTextStyle.copy(fontSize = 20.sp),
     h4 = defaultTextStyle.copy(fontSize = 18.sp, fontWeight = FontWeight.Medium),
-    h5 = defaultTextStyle.copy(fontSize = UNDEFINED_SIZE),
-    h6 = defaultTextStyle.copy(fontSize = UNDEFINED_SIZE),
+    h5 = defaultTextStyle.copy(fontSize = 16.sp, fontWeight = FontWeight.Bold),
+    h6 = defaultTextStyle.copy(fontSize = 14.sp, fontWeight = FontWeight.Bold),
     subtitle1 = defaultTextStyle.copy(fontSize = UNDEFINED_SIZE),
     subtitle2 = defaultTextStyle.copy(fontSize = UNDEFINED_SIZE),
     body1 = defaultTextStyle.copy(fontSize = 16.sp),
-    body2 = defaultTextStyle.copy(fontSize = UNDEFINED_SIZE),
-    button = defaultTextStyle.copy(fontSize = 15.sp),
+    body2 = defaultTextStyle.copy(fontSize = 14.sp),
+    button = defaultTextStyle.copy(fontSize = 16.sp),
     caption = defaultTextStyle.copy(fontSize = 14.sp),
     overline = defaultTextStyle.copy(fontSize = 12.sp)
 )

@@ -36,7 +36,8 @@ data class Step(
 data class Ingredient(
     val id: Int,
     val name: String,
-    val desc: String,
-    val quantity: Int,
-    val quantityType: String,
+    val desc: String? = null,
+    val quantity: Int = 0,
+    val quantityType: String? = null,
+    val iconRes: Int = 0
 )

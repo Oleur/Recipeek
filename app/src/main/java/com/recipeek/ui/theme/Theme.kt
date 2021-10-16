@@ -148,7 +148,7 @@ fun ProvideAppColors(
 }
 
 private val LocalRecipeekColors = staticCompositionLocalOf<AppColors> {
-    error("No JetsnackColorPalette provided")
+    error("No ColorPalette provided")
 }
 
 fun debugColors(
