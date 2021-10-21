@@ -54,14 +54,14 @@ class RecipeRepository @Inject constructor() {
                         name = "Poivronade",
                         quantity = 10,
                         quantityType = "cl",
-                        iconRes = R.drawable.ic_ing_chicken,
+                        iconRes = R.drawable.ic_ing_cheese,
                     ),
                     Ingredient(
                         id = 3,
                         name = "Pomme de terre",
                         quantity = 300,
                         quantityType = "g",
-                        iconRes = R.drawable.ic_ing_chicken,
+                        iconRes = R.drawable.ic_ing_cheese,
                     ),
                     Ingredient(
                         id = 4,

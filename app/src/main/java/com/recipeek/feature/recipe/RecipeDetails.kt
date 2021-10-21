@@ -1,5 +1,6 @@
 package com.recipeek.feature.recipe
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.SizeTransform
@@ -44,6 +45,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -58,6 +60,7 @@ import com.recipeek.data.Step
 import com.recipeek.feature.home.RecipesViewModel
 import com.recipeek.ui.theme.AppColorsTheme
 import com.recipeek.ui.theme.RecipeekShapes
+import com.recipeek.ui.theme.RecipeekTheme
 
 @ExperimentalAnimationApi
 @Composable
@@ -237,7 +240,9 @@ fun IngredientItem(ingredient: Ingredient) {
         )
         Text(
             text = ingredient.name,
-            modifier = Modifier.align(Alignment.Start).width(80.dp),
+            modifier = Modifier
+                .align(Alignment.Start)
+                .width(80.dp),
             style = MaterialTheme.typography.h6,
             color = AppColorsTheme.colors.text,
             maxLines = 1,
@@ -245,7 +250,9 @@ fun IngredientItem(ingredient: Ingredient) {
         )
         Text(
             text = "${ingredient.quantity} ${ingredient.quantityType}",
-            modifier = Modifier.align(Alignment.Start).width(80.dp),
+            modifier = Modifier
+                .align(Alignment.Start)
+                .width(80.dp),
             style = MaterialTheme.typography.body2,
             color = AppColorsTheme.colors.textHint,
             maxLines = 1,
@@ -321,5 +328,55 @@ fun StepItem(step: Step) {
                 overflow = if (targetExpanded) TextOverflow.Clip else TextOverflow.Ellipsis
             )
         }
+    }
+}
+
+@ExperimentalAnimationApi
+@Preview(
+    showSystemUi = true,
+    showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Composable
+fun StepPreview() {
+    RecipeekTheme {
+        val step = Step(
+            position = 3,
+            desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        )
+        StepItem(step = step)
+    }
+}
+
+@ExperimentalAnimationApi
+@Preview(showBackground = true)
+@Composable
+fun IngPreview() {
+    RecipeekTheme {
+        val ing = Ingredient(
+            id = 1,
+            name = "Pancetta",
+            quantity = 4,
+            quantityType = "tranches",
+            iconRes = R.drawable.ic_ing_bacon,
+        )
+        IngredientItem(ingredient = ing)
+    }
+}
+
+@Preview
+@Composable
+fun RecipeCardPreview() {
+    RecipeekTheme {
+        val recipe = Recipe(
+            id = 0,
+            title = "Ballotine de dinde automnale",
+            desc = "Une ballotine de poulet farcie à la pancetta poivrée, coulis de poivrons rouges et Ossau-Iraty.\n" +
+                "Sur une mousseline de pomme de terre et chanterelles roties au beurre",
+            imageUrl = "https://images.unsplash.com/photo-1633796331241-4bb7e4658d56?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80",
+            calories = 876,
+            cookingTime = 90
+        )
+        RecipeCard(recipe = recipe)
     }
 }

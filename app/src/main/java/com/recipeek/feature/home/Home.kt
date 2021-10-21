@@ -40,6 +40,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -51,6 +52,7 @@ import com.recipeek.data.Recipe
 import com.recipeek.ui.common.LinearGradientTransformation
 import com.recipeek.ui.common.atom.SearchInput
 import com.recipeek.ui.theme.AppColorsTheme
+import com.recipeek.ui.theme.RecipeekTheme
 
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
@@ -186,5 +188,22 @@ fun HomeRecipeItem(recipe: Recipe, onNavigateTo: (petId: Int) -> Unit) {
                 color = AppColorsTheme.colors.textHint,
             )
         }
+    }
+}
+
+@Preview
+@Composable
+fun RecipeCardPreview() {
+    RecipeekTheme {
+        val recipe = Recipe(
+            id = 0,
+            title = "Ballotine de dinde automnale",
+            desc = "Une ballotine de poulet farcie à la pancetta poivrée, coulis de poivrons rouges et Ossau-Iraty.\n" +
+                "Sur une mousseline de pomme de terre et chanterelles roties au beurre",
+            imageUrl = "https://images.unsplash.com/photo-1633796331241-4bb7e4658d56?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80",
+            calories = 876,
+            cookingTime = 90
+        )
+        HomeRecipeItem(recipe = recipe, onNavigateTo = {})
     }
 }
