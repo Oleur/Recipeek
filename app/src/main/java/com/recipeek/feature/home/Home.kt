@@ -88,15 +88,17 @@ fun HomeScreen(navController: NavController) {
         },
         backgroundColor = AppColorsTheme.colors.uiBackground,
         contentColor = AppColorsTheme.colors.uiBackground,
-        content = {
-            // A surface container using the 'background' color from the theme
-            Surface(color = AppColorsTheme.colors.uiBackground) {
-                HomeScreenList { petId ->
-                    navController.navigate("recipe/${petId}")
-                }
+    ) { paddingValues ->
+        // A surface container using the 'background' color from the theme
+        Surface(
+            modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
+            color = AppColorsTheme.colors.uiBackground
+        ) {
+            HomeScreenList { petId ->
+                navController.navigate("recipe/${petId}")
             }
         }
-    )
+    }
 }
 
 @ExperimentalAnimationApi
