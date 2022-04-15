@@ -82,7 +82,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
 
     // Coil
-    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("io.coil-kt:coil-compose:2.0.0-rc03")
 
     // Hilt (DI)
     implementation 'com.google.dagger:hilt-android:2.41'

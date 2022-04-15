@@ -48,7 +48,8 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.recipeek.R
@@ -82,18 +83,17 @@ fun RecipeDetailsScreen(recipeId: Int) {
         val (backdrop, recipeCard, spacer, ingredientsRef, stepsRef) = createRefs()
 
         Image(
-            painter = rememberImagePainter(
-                data = recipe.imageUrl,
-                builder = {
-                    scale(Scale.FILL)
-                    fadeIn()
-                    transformations(
+            painter = rememberAsyncImagePainter(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(recipe.imageUrl)
+                    .scale(Scale.FILL)
+                    .crossfade(true)
+                    .transformations(
                         RoundedCornersTransformation(
                             bottomLeft = imageCornerSize,
                             bottomRight = imageCornerSize,
                         )
-                    )
-                }
+                    ).build()
             ),
             contentScale = ContentScale.Crop,
             contentDescription = "Recipe image",

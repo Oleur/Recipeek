@@ -44,7 +44,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.recipeek.R
@@ -155,15 +156,17 @@ fun HomeRecipeItem(recipe: Recipe, onNavigateTo: (petId: Int) -> Unit) {
             modifier = Modifier.fillMaxWidth(),
         ) {
             Image(
-                painter = rememberImagePainter(
-                    data = recipe.imageUrl,
-                    builder = {
-                        scale(Scale.FILL)
-                        transformations(
-                            LinearGradientTransformation(recipe.imageUrl ?: recipe.id.toString()),
+                painter = rememberAsyncImagePainter(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(recipe.imageUrl)
+                        .scale(Scale.FILL)
+                        .crossfade(true)
+                        .transformations(
+                            LinearGradientTransformation(
+                                recipe.imageUrl ?: recipe.id.toString()
+                            ),
                             RoundedCornersTransformation(LocalDensity.current.run { 8.dp.toPx() }),
-                        )
-                    },
+                        ).build()
                 ),
                 contentScale = ContentScale.Crop,
                 contentDescription = "",
