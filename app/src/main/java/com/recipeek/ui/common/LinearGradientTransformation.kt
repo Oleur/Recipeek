@@ -21,17 +21,15 @@ import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
-import coil.bitmap.BitmapPool
 import coil.size.Size
 import coil.transform.Transformation
 
-class LinearGradientTransformation(
-    private val id: String
-) : Transformation {
+class LinearGradientTransformation(private val id: String) : Transformation {
 
-    override fun key() = "image_$id"
+    override val cacheKey: String
+        get() = "image_$id"
 
-    override suspend fun transform(pool: BitmapPool, input: Bitmap, size: Size): Bitmap {
+    override suspend fun transform(input: Bitmap, size: Size): Bitmap {
         val x: Int = input.width
         val y: Int = input.height
 
